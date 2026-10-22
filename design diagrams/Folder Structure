@@ -1,0 +1,83 @@
+reconcile-ai-backend/
+│
+├── app/
+│   ├── main.py
+│   │
+│   ├── api/
+│   │   └── v1/
+│   │       ├── router.py
+│   │       └── dependencies.py
+│   │
+│   ├── modules/
+│   │   ├── dashboard/
+│   │   │   ├── router.py
+│   │   │   ├── schemas.py
+│   │   │   ├── service.py
+│   │   │   └── repository.py
+│   │   │
+│   │   ├── ingestion/
+│   │   │   ├── service.py
+│   │   │   ├── parser.py
+│   │   │   ├── validator.py
+│   │   │   └── schemas.py
+│   │   │
+│   │   ├── reconciliation/
+│   │   │   ├── router.py
+│   │   │   ├── schemas.py
+│   │   │   ├── service.py
+│   │   │   ├── repository.py
+│   │   │   └── engine.py
+│   │   │
+│   │   ├── entity_mapping/
+│   │   │   ├── router.py
+│   │   │   ├── schemas.py
+│   │   │   ├── service.py
+│   │   │   └── repository.py
+│   │   │
+│   │   ├── exceptions/
+│   │   │   ├── router.py
+│   │   │   ├── schemas.py
+│   │   │   ├── service.py
+│   │   │   └── repository.py
+│   │   │
+│   │   └── audit/
+│   │       ├── router.py
+│   │       ├── schemas.py
+│   │       ├── service.py
+│   │       └── repository.py
+│   │
+│   ├── db/
+│   │   ├── base.py
+│   │   ├── session.py
+│   │   └── models/
+│   │       ├── user.py
+│   │       ├── reconciliation.py
+│   │       ├── import_file.py
+│   │       ├── transaction.py
+│   │       ├── match_candidate.py
+│   │       ├── result.py
+│   │       ├── exception.py
+│   │       ├── entity_mapping.py
+│   │       └── audit.py
+│   │
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── errors.py
+│   │   ├── logging.py
+│   │   └── enums.py
+│   │
+│   └── common/
+│       ├── pagination.py
+│       └── responses.py
+│
+├── migrations/
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── api/
+│
+├── .env.example
+├── .gitignore
+├── alembic.ini
+├── pyproject.toml
+└── README.md

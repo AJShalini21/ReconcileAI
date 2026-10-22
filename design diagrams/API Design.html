@@ -1,0 +1,1778 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Financial Reconciliation System API</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Financial Reconciliation System API</h1>
+    <div class="app-desc">Financial Reconciliation System API</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="you@your-company.com">you@your-company.com</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/personal-10e/Reconcile/1.0.0</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Admins">Admins</a></h4>
+  <ul>
+  <li><a href="#approveEntityMapping"><code><span class="http-method">patch</span> /api/v1/entity-mappings/{mappingId}/approve</code></a></li>
+  <li><a href="#approveException"><code><span class="http-method">patch</span> /api/v1/exceptions/{exceptionId}/approve</code></a></li>
+  <li><a href="#createReconciliation"><code><span class="http-method">post</span> /api/v1/reconciliations</code></a></li>
+  <li><a href="#rejectEntityMapping"><code><span class="http-method">patch</span> /api/v1/entity-mappings/{mappingId}/reject</code></a></li>
+  <li><a href="#rejectException"><code><span class="http-method">patch</span> /api/v1/exceptions/{exceptionId}/reject</code></a></li>
+  </ul>
+  <h4><a href="#Developers">Developers</a></h4>
+  <ul>
+  <li><a href="#getAuditLogs"><code><span class="http-method">get</span> /api/v1/audit-logs</code></a></li>
+  <li><a href="#getDashboardSummary"><code><span class="http-method">get</span> /api/v1/dashboard/summary</code></a></li>
+  <li><a href="#getEntityMappingById"><code><span class="http-method">get</span> /api/v1/entity-mappings/{mappingId}</code></a></li>
+  <li><a href="#getEntityMappings"><code><span class="http-method">get</span> /api/v1/entity-mappings</code></a></li>
+  <li><a href="#getExceptionById"><code><span class="http-method">get</span> /api/v1/exceptions/{exceptionId}</code></a></li>
+  <li><a href="#getExceptionSummary"><code><span class="http-method">get</span> /api/v1/exceptions/summary</code></a></li>
+  <li><a href="#getExceptions"><code><span class="http-method">get</span> /api/v1/exceptions</code></a></li>
+  <li><a href="#getRecentActivity"><code><span class="http-method">get</span> /api/v1/dashboard/recent-activity</code></a></li>
+  <li><a href="#getRecentRuns"><code><span class="http-method">get</span> /api/v1/dashboard/recent-runs</code></a></li>
+  <li><a href="#getReconciliationById"><code><span class="http-method">get</span> /api/v1/reconciliations/{runId}</code></a></li>
+  <li><a href="#getReconciliations"><code><span class="http-method">get</span> /api/v1/reconciliations</code></a></li>
+  </ul>
+
+  <h1><a name="Admins">Admins</a></h1>
+  <div class="method"><a name="approveEntityMapping"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /api/v1/entity-mappings/{mappingId}/approve</code></pre></div>
+    <div class="method-summary">Approve an entity mapping (<span class="nickname">approveEntityMapping</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">mappingId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#EntityMappingApprovalResponse">EntityMappingApprovalResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "mappingId" : "MAP-001",
+  "reviewedAt" : "2026-10-15T09:00:00Z",
+  "message" : "Entity mapping approved successfully.",
+  "status" : "APPROVED"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Entity mapping approved successfully
+        <a href="#EntityMappingApprovalResponse">EntityMappingApprovalResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="approveException"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /api/v1/exceptions/{exceptionId}/approve</code></pre></div>
+    <div class="method-summary">Approve an exception (<span class="nickname">approveException</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">exceptionId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#exceptionId_approve_body">exceptionId_approve_body</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Optional comments for approval </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ExceptionApprovalResponse">ExceptionApprovalResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "exceptionId" : "EX-001",
+  "reviewedAt" : "2026-10-15T09:00:00Z",
+  "message" : "Suggested match approved successfully.",
+  "status" : "APPROVED"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Exception approved successfully
+        <a href="#ExceptionApprovalResponse">ExceptionApprovalResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createReconciliation"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/reconciliations</code></pre></div>
+    <div class="method-summary">Upload bank and ledger CSV files and initiate a new reconciliation (<span class="nickname">createReconciliation</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>multipart/form-data</code></li>
+    </ul>
+
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">bankFile (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: binary</div>      <div class="param">ledgerFile (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: binary</div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ReconciliationQueuedResponse">ReconciliationQueuedResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "createdAt" : "2026-10-15T09:00:00Z",
+  "runId" : "RUN-005",
+  "message" : "Reconciliation has been queued successfully.",
+  "status" : "QUEUED"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    Reconciliation queued successfully
+        <a href="#ReconciliationQueuedResponse">ReconciliationQueuedResponse</a>
+    <h4 class="field-label">400</h4>
+    Missing file or invalid request
+        <a href="#ErrorResponse">ErrorResponse</a>
+    <h4 class="field-label">413</h4>
+    File too large
+        <a href="#ErrorResponse">ErrorResponse</a>
+    <h4 class="field-label">422</h4>
+    File validation failure
+        <a href="#FileValidationErrorResponse">FileValidationErrorResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="rejectEntityMapping"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /api/v1/entity-mappings/{mappingId}/reject</code></pre></div>
+    <div class="method-summary">Reject an entity mapping (<span class="nickname">rejectEntityMapping</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">mappingId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#mappingId_reject_body">mappingId_reject_body</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Optional reason for rejection </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#EntityMappingRejectionResponse">EntityMappingRejectionResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "mappingId" : "MAP-001",
+  "reviewedAt" : "2026-10-15T09:05:00Z",
+  "message" : "Entity mapping rejected successfully.",
+  "status" : "REJECTED"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Entity mapping rejected successfully
+        <a href="#EntityMappingRejectionResponse">EntityMappingRejectionResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="rejectException"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /api/v1/exceptions/{exceptionId}/reject</code></pre></div>
+    <div class="method-summary">Reject an exception (<span class="nickname">rejectException</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">exceptionId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#exceptionId_reject_body">exceptionId_reject_body</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Comments for rejection </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ExceptionRejectionResponse">ExceptionRejectionResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "exceptionId" : "EX-001",
+  "reviewedAt" : "2026-10-15T09:05:00Z",
+  "message" : "Suggested match rejected successfully.",
+  "status" : "REJECTED"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Exception rejected successfully
+        <a href="#ExceptionRejectionResponse">ExceptionRejectionResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Developers">Developers</a></h1>
+  <div class="method"><a name="getAuditLogs"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/audit-logs</code></pre></div>
+    <div class="method-summary">Retrieve audit events with filtering and pagination (<span class="nickname">getAuditLogs</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">action (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter audit logs by action code </div>      <div class="param">runId (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter audit logs by run ID </div>      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Page number for pagination </div>      <div class="param">size (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Page size for pagination </div>      <div class="param">sort (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Sort order, e.g. timestamp,desc </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#AuditLogsResponse">AuditLogsResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "size" : 20,
+  "totalPages" : 1,
+  "page" : 0,
+  "content" : [ {
+    "auditId" : "AUD-001",
+    "actor" : {
+      "name" : "User",
+      "id" : "USER-001"
+    },
+    "resourceId" : "EX-001",
+    "action" : "EXCEPTION_APPROVED",
+    "description" : "Approved a suggested match for ABC Pvt Ltd.",
+    "runId" : "REC-001",
+    "title" : "Exception approved",
+    "status" : "SUCCESS",
+    "resourceType" : "EXCEPTION",
+    "timestamp" : "2026-10-15T05:12:00Z"
+  }, {
+    "auditId" : "AUD-001",
+    "actor" : {
+      "name" : "User",
+      "id" : "USER-001"
+    },
+    "resourceId" : "EX-001",
+    "action" : "EXCEPTION_APPROVED",
+    "description" : "Approved a suggested match for ABC Pvt Ltd.",
+    "runId" : "REC-001",
+    "title" : "Exception approved",
+    "status" : "SUCCESS",
+    "resourceType" : "EXCEPTION",
+    "timestamp" : "2026-10-15T05:12:00Z"
+  } ],
+  "totalElements" : 4
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of audit log events with pagination
+        <a href="#AuditLogsResponse">AuditLogsResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getDashboardSummary"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/dashboard/summary</code></pre></div>
+    <div class="method-summary">Get dashboard summary metrics (<span class="nickname">getDashboardSummary</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#DashboardSummary">DashboardSummary</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "entityMappings" : 12,
+  "matchedTransactions" : 4176,
+  "unmatchedAmount" : 4280.2,
+  "recentlyUpdatedMappings" : 3,
+  "pendingReviews" : 18,
+  "totalRuns" : 24,
+  "runsThisMonth" : 8,
+  "matchRate" : 98.4
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Dashboard summary metrics
+        <a href="#DashboardSummary">DashboardSummary</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getEntityMappingById"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/entity-mappings/{mappingId}</code></pre></div>
+    <div class="method-summary">View mapping details (<span class="nickname">getEntityMappingById</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">mappingId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#EntityMappingDetail">EntityMappingDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "mappingId" : "MAP-001",
+  "originalName" : "ABC Pvt Ltd",
+  "createdAt" : "2026-10-15T08:30:00Z",
+  "confidence" : 0.94,
+  "matchedEntityName" : "ABC Private Limited",
+  "reviewedAt" : "2000-01-23T04:56:07.000+00:00",
+  "source" : "BANK",
+  "relatedExceptions" : [ {
+    "exceptionId" : "EXC-014",
+    "runId" : "RUN-004",
+    "type" : "NAME_MISMATCH"
+  }, {
+    "exceptionId" : "EXC-014",
+    "runId" : "RUN-004",
+    "type" : "NAME_MISMATCH"
+  } ],
+  "status" : "PENDING_REVIEW"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Entity mapping details
+        <a href="#EntityMappingDetail">EntityMappingDetail</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getEntityMappings"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/entity-mappings</code></pre></div>
+    <div class="method-summary">Get all entity mappings with optional filtering and pagination (<span class="nickname">getEntityMappings</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">status (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter mappings by status </div>      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Page number for pagination </div>      <div class="param">size (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Page size for pagination </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#EntityMappingsResponse">EntityMappingsResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "mappings" : [ {
+    "mappingId" : "MAP-001",
+    "originalName" : "ABC Pvt Ltd",
+    "createdAt" : "2026-10-15T08:30:00Z",
+    "confidence" : 0.94,
+    "matchedEntityName" : "ABC Private Limited",
+    "source" : "BANK",
+    "status" : "PENDING_REVIEW"
+  }, {
+    "mappingId" : "MAP-001",
+    "originalName" : "ABC Pvt Ltd",
+    "createdAt" : "2026-10-15T08:30:00Z",
+    "confidence" : 0.94,
+    "matchedEntityName" : "ABC Private Limited",
+    "source" : "BANK",
+    "status" : "PENDING_REVIEW"
+  } ],
+  "pagination" : {
+    "size" : 20,
+    "totalPages" : 1,
+    "page" : 0,
+    "totalElements" : 5
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of entity mappings with pagination
+        <a href="#EntityMappingsResponse">EntityMappingsResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getExceptionById"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/exceptions/{exceptionId}</code></pre></div>
+    <div class="method-summary">Get exception details (<span class="nickname">getExceptionById</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">exceptionId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ExceptionDetail">ExceptionDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "suggestedResolution" : "Verify supporting documents before confirming the match.",
+  "reviewedAt" : "2000-01-23T04:56:07.000+00:00",
+  "reasonType" : "AMOUNT_MISMATCH",
+  "explanation" : "The bank amount differs from the ledger amount by INR 500.",
+  "reviewComments" : "reviewComments",
+  "entityName" : "ABC Pvt Ltd",
+  "exceptionId" : "EX-001",
+  "ledgerRecord" : {
+    "amount" : 10000,
+    "invoiceReference" : "INV-1001",
+    "entryDate" : "2026-10-11T00:00:00.000+00:00",
+    "customerName" : "ABC Private Limited",
+    "entryId" : "LED-3021"
+  },
+  "difference" : {
+    "value" : 500
+  },
+  "runId" : "REC-2026-001",
+  "supportingDocuments" : [ ],
+  "status" : "PENDING_REVIEW",
+  "bankRecord" : {
+    "reference" : "UTR-12345",
+    "amount" : 9500,
+    "description" : "Payment from ABC Pvt Ltd",
+    "transactionDate" : "2026-10-12T00:00:00.000+00:00",
+    "transactionId" : "TXN-8741"
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Exception details
+        <a href="#ExceptionDetail">ExceptionDetail</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getExceptionSummary"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/exceptions/summary</code></pre></div>
+    <div class="method-summary">Get exception summary metrics (<span class="nickname">getExceptionSummary</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ExceptionSummary">ExceptionSummary</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "resolvedToday" : 8,
+  "totalExceptions" : 24,
+  "pendingReview" : 16
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Exception summary metrics
+        <a href="#ExceptionSummary">ExceptionSummary</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getExceptions"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/exceptions</code></pre></div>
+    <div class="method-summary">Get exception records with optional filters and pagination (<span class="nickname">getExceptions</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">reasonType (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter exceptions by reason type </div>      <div class="param">status (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter exceptions by status </div>      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Page number for pagination </div>      <div class="param">size (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Page size for pagination </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ExceptionsResponse">ExceptionsResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "pagination" : {
+    "size" : 20,
+    "totalPages" : 1,
+    "page" : 0,
+    "totalElements" : 5
+  },
+  "exceptions" : [ {
+    "createdAt" : "2026-10-15T08:30:00Z",
+    "entityName" : "ABC Pvt Ltd",
+    "exceptionId" : "EX-001",
+    "difference" : {
+      "value" : 500
+    },
+    "runId" : "REC-2026-001",
+    "reasonType" : "AMOUNT_MISMATCH",
+    "status" : "PENDING_REVIEW",
+    "bankRecord" : {
+      "label" : "Bank amount",
+      "value" : 9500
+    }
+  }, {
+    "createdAt" : "2026-10-15T08:30:00Z",
+    "entityName" : "ABC Pvt Ltd",
+    "exceptionId" : "EX-001",
+    "difference" : {
+      "value" : 500
+    },
+    "runId" : "REC-2026-001",
+    "reasonType" : "AMOUNT_MISMATCH",
+    "status" : "PENDING_REVIEW",
+    "bankRecord" : {
+      "label" : "Bank amount",
+      "value" : 9500
+    }
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of exceptions with pagination
+        <a href="#ExceptionsResponse">ExceptionsResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getRecentActivity"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/dashboard/recent-activity</code></pre></div>
+    <div class="method-summary">Get recent dashboard activities (<span class="nickname">getRecentActivity</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">limit (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of recent activities to retrieve </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#RecentActivityResponse">RecentActivityResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "activities" : [ {
+    "actor" : "User",
+    "activityId" : "ACT-101",
+    "action" : "MATCH_APPROVED",
+    "description" : "Match approved in RUN-004",
+    "entityMappingId" : "EM-012",
+    "runId" : "RUN-004",
+    "timestamp" : "2026-10-15T06:11:00Z"
+  }, {
+    "actor" : "User",
+    "activityId" : "ACT-101",
+    "action" : "MATCH_APPROVED",
+    "description" : "Match approved in RUN-004",
+    "entityMappingId" : "EM-012",
+    "runId" : "RUN-004",
+    "timestamp" : "2026-10-15T06:11:00Z"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of recent activities
+        <a href="#RecentActivityResponse">RecentActivityResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getRecentRuns"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/dashboard/recent-runs</code></pre></div>
+    <div class="method-summary">Get recent reconciliation runs (<span class="nickname">getRecentRuns</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">limit (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of recent runs to retrieve </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#RecentRunsResponse">RecentRunsResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "runs" : [ {
+    "createdAt" : "2026-10-13T10:30:00Z",
+    "totalTransactions" : 1250,
+    "runId" : "RUN-004",
+    "status" : "COMPLETED"
+  }, {
+    "createdAt" : "2026-10-13T10:30:00Z",
+    "totalTransactions" : 1250,
+    "runId" : "RUN-004",
+    "status" : "COMPLETED"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of recent reconciliation runs
+        <a href="#RecentRunsResponse">RecentRunsResponse</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getReconciliationById"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/reconciliations/{runId}</code></pre></div>
+    <div class="method-summary">Get reconciliation run details (<span class="nickname">getReconciliationById</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">runId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ReconciliationDetail">ReconciliationDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "createdAt" : "2026-10-13T10:30:00Z",
+  "totalTransactions" : 1250,
+  "runId" : "REC-004",
+  "status" : "COMPLETED"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Reconciliation run details
+        <a href="#ReconciliationDetail">ReconciliationDetail</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getReconciliations"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/reconciliations</code></pre></div>
+    <div class="method-summary">Retrieve, search, filter, and paginate reconciliation runs (<span class="nickname">getReconciliations</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">search (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Search term for reconciliation runs </div>      <div class="param">status (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter runs by status </div>      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Page number for pagination </div>      <div class="param">size (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Page size for pagination </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ReconciliationsResponse">ReconciliationsResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "size" : 10,
+  "totalPages" : 3,
+  "page" : 0,
+  "content" : [ {
+    "createdAt" : "2026-10-13T10:30:00Z",
+    "totalTransactions" : 1250,
+    "runId" : "RUN-004",
+    "status" : "COMPLETED"
+  }, {
+    "createdAt" : "2026-10-13T10:30:00Z",
+    "totalTransactions" : 1250,
+    "runId" : "RUN-004",
+    "status" : "COMPLETED"
+  } ],
+  "totalElements" : 24
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    List of reconciliation runs with pagination
+        <a href="#ReconciliationsResponse">ReconciliationsResponse</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Activity"><code>Activity</code></a></li>
+    <li><a href="#AmountDifference"><code>AmountDifference</code></a></li>
+    <li><a href="#AuditLog"><code>AuditLog</code></a></li>
+    <li><a href="#AuditLog_actor"><code>AuditLog_actor</code></a></li>
+    <li><a href="#AuditLogsResponse"><code>AuditLogsResponse</code></a></li>
+    <li><a href="#DashboardSummary"><code>DashboardSummary</code></a></li>
+    <li><a href="#EntityMapping"><code>EntityMapping</code></a></li>
+    <li><a href="#EntityMappingApprovalResponse"><code>EntityMappingApprovalResponse</code></a></li>
+    <li><a href="#EntityMappingDetail"><code>EntityMappingDetail</code></a></li>
+    <li><a href="#EntityMappingRejectionResponse"><code>EntityMappingRejectionResponse</code></a></li>
+    <li><a href="#EntityMappingsResponse"><code>EntityMappingsResponse</code></a></li>
+    <li><a href="#ErrorResponse"><code>ErrorResponse</code></a></li>
+    <li><a href="#Exception"><code>Exception</code></a></li>
+    <li><a href="#ExceptionApprovalResponse"><code>ExceptionApprovalResponse</code></a></li>
+    <li><a href="#ExceptionDetail"><code>ExceptionDetail</code></a></li>
+    <li><a href="#ExceptionDetail_bankRecord"><code>ExceptionDetail_bankRecord</code></a></li>
+    <li><a href="#ExceptionDetail_ledgerRecord"><code>ExceptionDetail_ledgerRecord</code></a></li>
+    <li><a href="#ExceptionRecord"><code>ExceptionRecord</code></a></li>
+    <li><a href="#ExceptionRejectionResponse"><code>ExceptionRejectionResponse</code></a></li>
+    <li><a href="#ExceptionSummary"><code>ExceptionSummary</code></a></li>
+    <li><a href="#ExceptionsResponse"><code>ExceptionsResponse</code></a></li>
+    <li><a href="#FileValidationErrorResponse"><code>FileValidationErrorResponse</code></a></li>
+    <li><a href="#FileValidationErrorResponse_errors"><code>FileValidationErrorResponse_errors</code></a></li>
+    <li><a href="#InventoryItem"><code>InventoryItem</code></a></li>
+    <li><a href="#Manufacturer"><code>Manufacturer</code></a></li>
+    <li><a href="#Pagination"><code>Pagination</code></a></li>
+    <li><a href="#RecentActivityResponse"><code>RecentActivityResponse</code></a></li>
+    <li><a href="#RecentRunsResponse"><code>RecentRunsResponse</code></a></li>
+    <li><a href="#ReconciliationDetail"><code>ReconciliationDetail</code></a></li>
+    <li><a href="#ReconciliationQueuedResponse"><code>ReconciliationQueuedResponse</code></a></li>
+    <li><a href="#ReconciliationRun"><code>ReconciliationRun</code></a></li>
+    <li><a href="#ReconciliationsResponse"><code>ReconciliationsResponse</code></a></li>
+    <li><a href="#RelatedException"><code>RelatedException</code></a></li>
+    <li><a href="#exceptionId_approve_body"><code>exceptionId_approve_body</code></a></li>
+    <li><a href="#exceptionId_reject_body"><code>exceptionId_reject_body</code></a></li>
+    <li><a href="#mappingId_reject_body"><code>mappingId_reject_body</code></a></li>
+    <li><a href="#v1_reconciliations_body"><code>v1_reconciliations_body</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Activity"><code>Activity</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">activityId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ACT-101</span></div>
+<div class="param">action (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: MATCH_APPROVED</span></div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Match approved in RUN-004</span></div>
+<div class="param">actor (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: User</span></div>
+<div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T06:11Z</span></div>
+<div class="param">runId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: RUN-004</span></div>
+<div class="param">entityMappingId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EM-012</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="AmountDifference"><code>AmountDifference</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">value (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+          <div class="param-desc"><span class="param-type">example: 500</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="AuditLog"><code>AuditLog</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">auditId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: AUD-001</span></div>
+<div class="param">action (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EXCEPTION_APPROVED</span></div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Exception approved</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: SUCCESS</span></div>
+<div class="param">runId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: REC-001</span></div>
+<div class="param">resourceType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EXCEPTION</span></div>
+<div class="param">resourceId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EX-001</span></div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Approved a suggested match for ABC Pvt Ltd.</span></div>
+<div class="param">actor (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuditLog_actor">AuditLog_actor</a></span>  </div>
+<div class="param">timestamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T05:12Z</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="AuditLog_actor"><code>AuditLog_actor</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: USER-001</span></div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: User</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="AuditLogsResponse"><code>AuditLogsResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#AuditLog">array[AuditLog]</a></span>  </div>
+<div class="param">page (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 0</span></div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 20</span></div>
+<div class="param">totalElements (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 4</span></div>
+<div class="param">totalPages (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DashboardSummary"><code>DashboardSummary</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">totalRuns (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 24</span></div>
+<div class="param">runsThisMonth (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 8</span></div>
+<div class="param">matchedTransactions (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 4176</span></div>
+<div class="param">matchRate (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+          <div class="param-desc"><span class="param-type">example: 98.4</span></div>
+<div class="param">pendingReviews (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 18</span></div>
+<div class="param">unmatchedAmount (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+          <div class="param-desc"><span class="param-type">example: 4280.2</span></div>
+<div class="param">entityMappings (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 12</span></div>
+<div class="param">recentlyUpdatedMappings (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 3</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EntityMapping"><code>EntityMapping</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">mappingId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: MAP-001</span></div>
+<div class="param">originalName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ABC Pvt Ltd</span></div>
+<div class="param">matchedEntityName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ABC Private Limited</span></div>
+<div class="param">source (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">BANK</div><div class="param-enum">LEDGER</div>
+          <div class="param-desc"><span class="param-type">example: BANK</span></div>
+<div class="param">confidence (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+          <div class="param-desc"><span class="param-type">example: 0.94</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">PENDING_REVIEW</div><div class="param-enum">APPROVED</div><div class="param-enum">REJECTED</div>
+          <div class="param-desc"><span class="param-type">example: PENDING_REVIEW</span></div>
+<div class="param">createdAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T08:30Z</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EntityMappingApprovalResponse"><code>EntityMappingApprovalResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">mappingId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: MAP-001</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">APPROVED</div>
+          <div class="param-desc"><span class="param-type">example: APPROVED</span></div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Entity mapping approved successfully.</span></div>
+<div class="param">reviewedAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T09:00Z</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EntityMappingDetail"><code>EntityMappingDetail</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">mappingId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: MAP-001</span></div>
+<div class="param">originalName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ABC Pvt Ltd</span></div>
+<div class="param">matchedEntityName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ABC Private Limited</span></div>
+<div class="param">source (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">BANK</div><div class="param-enum">LEDGER</div>
+          <div class="param-desc"><span class="param-type">example: BANK</span></div>
+<div class="param">confidence (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+          <div class="param-desc"><span class="param-type">example: 0.94</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">PENDING_REVIEW</div><div class="param-enum">APPROVED</div><div class="param-enum">REJECTED</div>
+          <div class="param-desc"><span class="param-type">example: PENDING_REVIEW</span></div>
+<div class="param">relatedExceptions (optional)</div><div class="param-desc"><span class="param-type"><a href="#RelatedException">array[RelatedException]</a></span>  </div>
+<div class="param">createdAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T08:30Z</span></div>
+<div class="param">reviewedAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EntityMappingRejectionResponse"><code>EntityMappingRejectionResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">mappingId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: MAP-001</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">REJECTED</div>
+          <div class="param-desc"><span class="param-type">example: REJECTED</span></div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Entity mapping rejected successfully.</span></div>
+<div class="param">reviewedAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T09:05Z</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EntityMappingsResponse"><code>EntityMappingsResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">mappings (optional)</div><div class="param-desc"><span class="param-type"><a href="#EntityMapping">array[EntityMapping]</a></span>  </div>
+<div class="param">pagination (optional)</div><div class="param-desc"><span class="param-type"><a href="#Pagination">Pagination</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ErrorResponse"><code>ErrorResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: INVALID_REQUEST</span></div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Both bank and ledger CSV files are required.</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Exception"><code>Exception</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">exceptionId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EX-001</span></div>
+<div class="param">entityName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ABC Pvt Ltd</span></div>
+<div class="param">reasonType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">AMOUNT_MISMATCH</div><div class="param-enum">NAME_MISMATCH</div><div class="param-enum">DATE_MISMATCH</div>
+          <div class="param-desc"><span class="param-type">example: AMOUNT_MISMATCH</span></div>
+<div class="param">runId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: REC-2026-001</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">PENDING_REVIEW</div><div class="param-enum">APPROVED</div><div class="param-enum">REJECTED</div><div class="param-enum">ALL</div>
+          <div class="param-desc"><span class="param-type">example: PENDING_REVIEW</span></div>
+<div class="param">bankRecord (optional)</div><div class="param-desc"><span class="param-type"><a href="#ExceptionRecord">ExceptionRecord</a></span>  </div>
+<div class="param">ledgerRecord (optional)</div><div class="param-desc"><span class="param-type"><a href="#ExceptionRecord">ExceptionRecord</a></span>  </div>
+<div class="param">difference (optional)</div><div class="param-desc"><span class="param-type"><a href="#AmountDifference">AmountDifference</a></span>  </div>
+<div class="param">createdAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T08:30Z</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ExceptionApprovalResponse"><code>ExceptionApprovalResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">exceptionId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EX-001</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">APPROVED</div>
+          <div class="param-desc"><span class="param-type">example: APPROVED</span></div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Suggested match approved successfully.</span></div>
+<div class="param">reviewedAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T09:00Z</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ExceptionDetail"><code>ExceptionDetail</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">exceptionId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EX-001</span></div>
+<div class="param">runId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: REC-2026-001</span></div>
+<div class="param">reasonType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">AMOUNT_MISMATCH</div><div class="param-enum">NAME_MISMATCH</div><div class="param-enum">DATE_MISMATCH</div>
+          <div class="param-desc"><span class="param-type">example: AMOUNT_MISMATCH</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">PENDING_REVIEW</div><div class="param-enum">APPROVED</div><div class="param-enum">REJECTED</div><div class="param-enum">ALL</div>
+          <div class="param-desc"><span class="param-type">example: PENDING_REVIEW</span></div>
+<div class="param">entityName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ABC Pvt Ltd</span></div>
+<div class="param">bankRecord (optional)</div><div class="param-desc"><span class="param-type"><a href="#ExceptionDetail_bankRecord">ExceptionDetail_bankRecord</a></span>  </div>
+<div class="param">ledgerRecord (optional)</div><div class="param-desc"><span class="param-type"><a href="#ExceptionDetail_ledgerRecord">ExceptionDetail_ledgerRecord</a></span>  </div>
+<div class="param">difference (optional)</div><div class="param-desc"><span class="param-type"><a href="#AmountDifference">AmountDifference</a></span>  </div>
+<div class="param">explanation (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: The bank amount differs from the ledger amount by INR 500.</span></div>
+<div class="param">suggestedResolution (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Verify supporting documents before confirming the match.</span></div>
+<div class="param">supportingDocuments (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">array[Object]</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: []</span></div>
+<div class="param">reviewComments (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">reviewedAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ExceptionDetail_bankRecord"><code>ExceptionDetail_bankRecord</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">transactionId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: TXN-8741</span></div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Payment from ABC Pvt Ltd</span></div>
+<div class="param">transactionDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span>  format: date</div>
+          <div class="param-desc"><span class="param-type">example: Mon Oct 12 00:00:00 GMT 2026</span></div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+          <div class="param-desc"><span class="param-type">example: 9500</span></div>
+<div class="param">reference (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: UTR-12345</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ExceptionDetail_ledgerRecord"><code>ExceptionDetail_ledgerRecord</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">entryId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: LED-3021</span></div>
+<div class="param">invoiceReference (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: INV-1001</span></div>
+<div class="param">entryDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span>  format: date</div>
+          <div class="param-desc"><span class="param-type">example: Sun Oct 11 00:00:00 GMT 2026</span></div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+          <div class="param-desc"><span class="param-type">example: 10000</span></div>
+<div class="param">customerName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ABC Private Limited</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ExceptionRecord"><code>ExceptionRecord</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">label (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Bank amount</span></div>
+<div class="param">value (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+          <div class="param-desc"><span class="param-type">example: 9500</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ExceptionRejectionResponse"><code>ExceptionRejectionResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">exceptionId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EX-001</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">REJECTED</div>
+          <div class="param-desc"><span class="param-type">example: REJECTED</span></div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Suggested match rejected successfully.</span></div>
+<div class="param">reviewedAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T09:05Z</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ExceptionSummary"><code>ExceptionSummary</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">totalExceptions (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 24</span></div>
+<div class="param">pendingReview (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 16</span></div>
+<div class="param">resolvedToday (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 8</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ExceptionsResponse"><code>ExceptionsResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">exceptions (optional)</div><div class="param-desc"><span class="param-type"><a href="#Exception">array[Exception]</a></span>  </div>
+<div class="param">pagination (optional)</div><div class="param-desc"><span class="param-type"><a href="#Pagination">Pagination</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FileValidationErrorResponse"><code>FileValidationErrorResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: FILE_VALIDATION_FAILED</span></div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: The uploaded files failed validation.</span></div>
+<div class="param">errors (optional)</div><div class="param-desc"><span class="param-type"><a href="#FileValidationErrorResponse_errors">array[FileValidationErrorResponse_errors]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FileValidationErrorResponse_errors"><code>FileValidationErrorResponse_errors</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">file (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: bankFile</span></div>
+<div class="param">row (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">field (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: transaction_date</span></div>
+<div class="param">reason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Required column is missing.</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="InventoryItem"><code>InventoryItem</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#UUID">UUID</a></span>  format: uuid</div>
+          <div class="param-desc"><span class="param-type">example: d290f1ee-6c54-4b01-90e6-d701748f0851</span></div>
+<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Widget Adapter</span></div>
+<div class="param">releaseDate </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2016-08-29T09:12:33.001Z</span></div>
+<div class="param">manufacturer </div><div class="param-desc"><span class="param-type"><a href="#Manufacturer">Manufacturer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Manufacturer"><code>Manufacturer</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ACME Corporation</span></div>
+<div class="param">homePage (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: url</div>
+          <div class="param-desc"><span class="param-type">example: https://www.acme-corp.com</span></div>
+<div class="param">phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 408-867-5309</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Pagination"><code>Pagination</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">page (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 0</span></div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 20</span></div>
+<div class="param">totalElements (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 5</span></div>
+<div class="param">totalPages (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RecentActivityResponse"><code>RecentActivityResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">activities (optional)</div><div class="param-desc"><span class="param-type"><a href="#Activity">array[Activity]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RecentRunsResponse"><code>RecentRunsResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">runs (optional)</div><div class="param-desc"><span class="param-type"><a href="#ReconciliationRun">array[ReconciliationRun]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ReconciliationDetail"><code>ReconciliationDetail</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">runId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: REC-004</span></div>
+<div class="param">createdAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-13T10:30Z</span></div>
+<div class="param">totalTransactions (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1250</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">QUEUED</div><div class="param-enum">PROCESSING</div><div class="param-enum">NEEDS_REVIEW</div><div class="param-enum">COMPLETED</div><div class="param-enum">FAILED</div>
+          <div class="param-desc"><span class="param-type">example: COMPLETED</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ReconciliationQueuedResponse"><code>ReconciliationQueuedResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">runId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: RUN-005</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">QUEUED</div><div class="param-enum">PROCESSING</div><div class="param-enum">NEEDS_REVIEW</div><div class="param-enum">COMPLETED</div><div class="param-enum">FAILED</div>
+          <div class="param-desc"><span class="param-type">example: QUEUED</span></div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Reconciliation has been queued successfully.</span></div>
+<div class="param">createdAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-15T09:00Z</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ReconciliationRun"><code>ReconciliationRun</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">runId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: RUN-004</span></div>
+<div class="param">createdAt (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+          <div class="param-desc"><span class="param-type">example: 2026-10-13T10:30Z</span></div>
+<div class="param">totalTransactions (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1250</span></div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">QUEUED</div><div class="param-enum">PROCESSING</div><div class="param-enum">NEEDS_REVIEW</div><div class="param-enum">COMPLETED</div><div class="param-enum">FAILED</div>
+          <div class="param-desc"><span class="param-type">example: COMPLETED</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ReconciliationsResponse"><code>ReconciliationsResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">content (optional)</div><div class="param-desc"><span class="param-type"><a href="#ReconciliationRun">array[ReconciliationRun]</a></span>  </div>
+<div class="param">page (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 0</span></div>
+<div class="param">size (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 10</span></div>
+<div class="param">totalElements (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 24</span></div>
+<div class="param">totalPages (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 3</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RelatedException"><code>RelatedException</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">exceptionId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: EXC-014</span></div>
+<div class="param">runId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: RUN-004</span></div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: NAME_MISMATCH</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="exceptionId_approve_body"><code>exceptionId_approve_body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">comments (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="exceptionId_reject_body"><code>exceptionId_reject_body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">comments (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="mappingId_reject_body"><code>mappingId_reject_body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">reason (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="v1_reconciliations_body"><code>v1_reconciliations_body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">bankFile </div><div class="param-desc"><span class="param-type"><a href="#binary">byte[]</a></span>  format: binary</div>
+<div class="param">ledgerFile </div><div class="param-desc"><span class="param-type"><a href="#binary">byte[]</a></span>  format: binary</div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
