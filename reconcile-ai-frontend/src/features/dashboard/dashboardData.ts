@@ -1,0 +1,83 @@
+import type { IconName } from "../../types/icons"
+
+export const recentRuns = [
+  {
+    id: "RUN-004",
+    bank_file: "bank_statement_oct.csv",
+    ledger_file: "general_ledger_oct.csv",
+    date: "Oct 13, 2024",
+    transactions: "1,250",
+    status: "Completed",
+    tone: "success" as const,
+  },
+  {
+    id: "RUN-003",
+    bank_file: "bank_tx_oct12.csv",
+    ledger_file: "ledger_entries_oct12.csv",
+    date: "Oct 12, 2024",
+    transactions: "980",
+    status: "Needs review",
+    tone: "warning" as const,
+  },
+  {
+    id: "RUN-002",
+    bank_file: "chase_statement_oct.csv",
+    ledger_file: "quickbooks_oct.csv",
+    date: "Oct 10, 2024",
+    transactions: "1,100",
+    status: "Completed",
+    tone: "success" as const,
+  },
+  {
+    id: "RUN-001",
+    bank_file: "bank_feed_oct08.csv",
+    ledger_file: "netsuite_oct08.csv",
+    date: "Oct 08, 2024",
+    transactions: "846",
+    status: "Failed",
+    tone: "error" as const,
+  },
+]
+
+export const auditRows = [
+  {
+    title: "Exception approved",
+    action: "Exception approved",
+    run: "REC-001",
+    resource: "EX-001 · REC-001",
+    description: "Approved a suggested match for ABC Pvt Ltd.",
+    date: "15 Oct 2026, 10:42 AM",
+    tone: "success" as const,
+    icon: "audit" as IconName,
+  },
+  {
+    title: "Entity mapping created",
+    action: "Entity mapping created",
+    run: "REC-001",
+    resource: "MAP-001 · REC-001",
+    description: "Linked ABC Pvt Ltd to ABC Private Limited.",
+    date: "15 Oct 2026, 10:30 AM",
+    tone: "success" as const,
+    icon: "mapping" as IconName,
+  },
+  {
+    title: "CSV uploaded",
+    action: "CSV uploaded",
+    run: "REC-001",
+    resource: "REC-001",
+    description: "Uploaded bank transactions for reconciliation.",
+    date: "15 Oct 2026, 10:15 AM",
+    tone: "success" as const,
+    icon: "upload" as IconName,
+  },
+  {
+    title: "Reconciliation completed",
+    action: "Reconciliation completed",
+    run: "REC-002",
+    resource: "REC-002",
+    description: "Processed 1,284 records with a 98.2% match rate.",
+    date: "14 Oct 2026, 4:28 PM",
+    tone: "info" as const,
+    icon: "history" as IconName,
+  },
+]

@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Production build output
+dist/
+dist-ssr/
+
+# Local environment variables
+.env.local
+.env.*.local
+
+# Neon local cache
+.neon/
+
+# Editor / OS
+.DS_Store
