@@ -1,0 +1,63 @@
+sequenceDiagram
+    actor User
+    participant UI as React Frontend
+    participant API as FastAPI
+    participant DB as PostgreSQL
+    participant Queue as Reconciliation Job Queue
+    participant Worker as Reconciliation Worker
+
+    Note over User,DB: 1. Upload and validate files
+    User->>UI: Upload bank and ledger CSVs
+    UI->>API: POST /imports (CSV files)
+    API->>API: Parse and validate uploaded files
+
+    alt Invalid files
+        API-->>UI: 400 Bad Request (validation errors)
+        UI-->>User: Display validation errors
+    else Valid files
+        API->>DB: Store validated data and import metadata
+        DB-->>API: Return import IDs
+        API-->>UI: 201 Created (import IDs, validation summary)
+        UI-->>User: Display validation summary and enable Start
+
+        Note over User,DB: 2. Start reconciliation using validated imports
+        User->>UI: Click Start Reconciliation
+        UI->>API: POST /reconciliations (import IDs)
+        API->>DB: Verify imports and create reconciliation run
+        DB-->>API: Return reconciliation ID
+        API->>DB: Create queue job (QUEUED)
+        DB-->>API: Job persisted
+        API-->>UI: 202 Accepted (reconciliation ID, QUEUED)
+        UI-->>User: Display queued status
+
+        par Background processing
+            Worker->>Queue: Claim next available job
+            Queue->>DB: Lock and claim queued job
+            DB-->>Queue: Return claimed job
+            Queue-->>Worker: Job details
+
+            Worker->>DB: Load validated transactions for run
+            DB-->>Worker: Validated transactions
+            Worker->>DB: Update run status to PROCESSING
+            Worker->>Worker: Normalize transactions
+            Worker->>Worker: Generate candidate pairs
+            Worker->>Worker: Perform deterministic matching
+            Worker->>Worker: Apply ML ranking
+            Worker->>Worker: Classify matches and exceptions
+            Worker->>DB: Persist results and exceptions
+            Worker->>DB: Mark job and run COMPLETED
+        and Frontend status polling
+            loop Until terminal status
+                UI->>API: GET /reconciliations/{id}/status
+                API->>DB: Read run status and progress
+                DB-->>API: Current status and progress
+                API-->>UI: Status response
+            end
+        end
+
+        UI->>API: GET /reconciliations/{id}/results
+        API->>DB: Fetch reconciliation results
+        DB-->>API: Results and summary
+        API-->>UI: Results response
+        UI-->>User: Display reconciliation results
+    end
